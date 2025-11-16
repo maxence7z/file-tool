@@ -1,14 +1,14 @@
 # file-tool
 
 ## [projet complet]
--Chiffrement de fichier : xor, aes
--Nettoyage des métadonnées
--Création d'un exécutable linux
--Interface personnalisée en ligne de commande
+-Chiffrement de fichier : xor, aes<br>
+-Nettoyage des métadonnées<br>
+-Création d'un exécutable linux<br>
+-Interface personnalisée en ligne de commande<br>
 
 ## Roadmap :
-Chiffrement : xor [O]
-Chiffrement : aes [N]
-Métadonnées : [N]
-Interface : [N]
-Exécutable : [N]
+Chiffrement : xor [O]<br>
+Chiffrement : aes [N]<br>
+Métadonnées : [N]<br>
+Interface : [N]<br>
+Exécutable : [N]<br>
