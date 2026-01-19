@@ -7,7 +7,7 @@
 
 #define KEYSIZE 32
 
-void xorencrypt(const char *filename, uint8_t *key) {
+void xorencrypt(char *filename, uint8_t *key) {
 	FILE *f = fopen(filename, "rb");
 	if (f == NULL) {
 		perror("Error with source file\n");
