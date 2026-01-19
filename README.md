@@ -1,6 +1,6 @@
 # file-tool
 
-pour compiler : make
+pour compiler : make <br>
 pour exécuter : ./main
 
 ## [projet complet]
