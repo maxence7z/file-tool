@@ -9,6 +9,6 @@ void resizekey(uint8_t *key, char *input);
 
 void extractkeyfromfile(uint8_t *key, const char *filename);
 
-void viewkey(const uint8_t *key, unsigned int hex_format);
+void viewkey(const uint8_t *key, uint8_t hex_format);
 
 #endif

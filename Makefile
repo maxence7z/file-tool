@@ -1,19 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude -O2 -std=c11
+CFLAGS = -Wall -Iinclude
+SRC = $(wildcard src/*.c)
+OBJ = $(SRC:src/%.c=build/%.o)
+EXEC = main
 
-SRC = src/keymanager.c src/xor.c src/main.c
-OBJ = $(SRC:.c=.o)
-TARGET = fulltest
+all: $(EXEC)
 
-all: $(TARGET)
+$(EXEC): $(OBJ)
+	$(CC) $(OBJ) -o $(EXEC)
 
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-%.o: %.c
+build/%.o: src/%.c
+	@mkdir -p build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -rf build $(EXEC)
 
-rebuild: clean all
