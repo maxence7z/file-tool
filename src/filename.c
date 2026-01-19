@@ -4,12 +4,12 @@
 #include <string.h>
 #include <stdint.h>
 
-const char *getfileext(const char *filename) {
+const char *getfileext(char *filename) {
 	const char *dot = strrchr(filename, '.');
 	return (dot && dot != filename) ? dot : "";
 }
 
-const char *getfileprefix(const char *filename) {
+const char *getfileprefix(char *filename) {
 	const char *lastdot = strrchr(filename, '.');
 	if (lastdot == NULL || lastdot == filename) {
 		return filename;
@@ -21,11 +21,11 @@ const char *getfileprefix(const char *filename) {
 	return prefix;
 }
 
-char* encfilename(const char *filename, uint8_t strsize) {
+char* encfilename(char *filename, uint8_t strsize) {
 	const char *ext = getfileext(filename);
 	const char *prefix = getfileprefix(filename);
 	if ((strlen(prefix) + strlen(ext) * 2) < strsize) {
-		memset(filename, 0, sizeof(filename));
+		filename[0] = '\0';
 		strcat(filename, prefix);
 		strcat(filename, ext);
 		strcat(filename, ext);
