@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void encrypt(const char *filename, uint8_t *key);
+void xorencrypt(const char *filename, uint8_t *key);
 
 #endif
