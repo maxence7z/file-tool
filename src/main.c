@@ -1,3 +1,4 @@
+#include "utils.h"
 #include "keymanager.h"
 #include "xor.h"
 #include <stdio.h>
