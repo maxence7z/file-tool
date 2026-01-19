@@ -1,5 +1,8 @@
 # file-tool
 
+pour compiler : make
+pour exécuter : ./main
+
 ## [projet complet]
 -Chiffrement de fichier : xor, aes<br>
 -Nettoyage des métadonnées<br>
