@@ -15,7 +15,7 @@ void xorencrypt(char *filename, uint8_t *key) {
 	}
 
 	char encrypted_file_name[256];
-	strcpy(encrypted_file_name, encfilename(filename, strlen(filename))); 
+	strcpy(encrypted_file_name, encfilename(filename, 256)); 
 
 	FILE *fo = fopen(encrypted_file_name, "wb");
 	if (fo == NULL) {

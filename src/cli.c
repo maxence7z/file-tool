@@ -7,9 +7,14 @@
 #include "xor.h"
 
 #define MAX_CMD 256
-#define MAX_ARGS 10
+
+void clear_stdout() {
+	printf("\033[2J\033[H");
+    fflush(stdout);
+}
 
 void print_banner() {
+	clear_stdout();
 	printf(
         "███████╗██╗██╗     ███████╗    ████████╗ ██████╗  ██████╗ ██╗\n"
         "██╔════╝██║██║     ██╔════╝    ╚══██╔══╝██╔═══██╗██╔═══██╗██║\n"
@@ -18,40 +23,44 @@ void print_banner() {
         "██║     ██║███████╗███████╗       ██║   ╚██████╔╝╚██████╔╝███████╗\n"
         "╚═╝     ╚═╝╚══════╝╚══════╝       ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝\n\n"
     );
+
+	printf("type 'help' for a list of commands\n");
 }
 
+void help() {
+	printf("\n\n		Prototype cli tool to do various things with files\n");
+	printf("		To exit, enter 'exit'\n");
+	printf("		For now you can only encrypt/decrypt a file with the xor algorithm\n");
+	printf("		To do so, type 'encrypt'\n");
+	printf("		You can choose the cypher key from a file, a string, or you can generate it\n\n");
+}
 
 void command(char *input) {
-	char *argv[MAX_ARGS];
-	int argc = 0;
-
-	char *token = strtok(input, " ");
-	while (token && argc < MAX_ARGS - 1) {
-		argv[argc++] = token;
-		token = strtok(NULL, " ");
-	}
-
-	argv[argc] = NULL;
-
-	if (argc == 0) {
+	if (strcmp(input, "help") == 0) {
+		help();
 		return;
-	}
+	} else if (strcmp(input, "encrypt") == 0) {
+		char file_to_encrypt[256] = {0};
+		printf("\n\nEnter the path to the file you want to encrypt: ");		
+		
+		if (fgets(file_to_encrypt, sizeof(file_to_encrypt), stdin) == NULL) {
+			perror("Error reading input\n");
+			return;
+		}
 
-	if (strcmp(argv[0], "about") == 0) {
-		printf("See readme.md on github.com/maxence7z/file-tool\n");
-	} else if (strcmp(argv[0], "encrypt") == 0) {
-		char *file_to_encrypt = argv[1];
+		file_to_encrypt[strcspn(file_to_encrypt, "\n")] = 0;
+
 		uint8_t key[KEYSIZE];
 		char keymode[256] = {0};
 
-        printf("Keymodes:\n");
+        printf("\n\nKeymodes:\n");
         printf("1. Press Enter to generate random key\n");
         printf("2. Type 'file' to use key from file\n");
         printf("3. Type any string to use as key (will be resized)\n");
         printf("Enter keymode: ");
 
         if (fgets(keymode, sizeof(keymode), stdin) == NULL) {
-            perror("Error reading input");
+            perror("Error reading input\n");
             return;
         }
 
@@ -62,9 +71,9 @@ void command(char *input) {
         }
         else if (strcmp(keymode, "file") == 0) {
 			char file_key[256] = {0};
-            printf("Enter path to key file: ");
+            printf("\n\nEnter path to key file: ");
             if (fgets(file_key, sizeof(file_key), stdin) == NULL) {
-                perror("Error reading input");
+                perror("Error reading input\n");
                 return;
             }
             file_key[strcspn(file_key, "\n")] = 0;
@@ -78,8 +87,9 @@ void command(char *input) {
 
 		char encryptmode[256] = {0};
 
-		printf("Enter cypher method\n");
-		printf("Available methods :\n xor\n aes256 coming soon");
+		printf("\n\nEnter cypher method\n");
+		printf("Available methods :\n xor\n aes256 coming soon\n");
+		printf("Enter mode: ");
 
 		if (fgets(encryptmode, sizeof(encryptmode), stdin) == NULL) {
 			perror("Error reading input");

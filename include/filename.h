@@ -1,10 +1,10 @@
 #ifndef FILENAME_H
 #define FILENAME_H
 
-#include <stdint.h>
+#include <stddef.h>
 
-const char *getfileext(char *filename);
-const char *getfileprefix(char *filename);
-char* encfilename(char *filename, uint8_t strsize);
+const char *getfileext(const char *filename);
+void getfileprefix(const char *filename, char *out, size_t out_size);
+char *encfilename(char *filename, size_t strsize);
 
 #endif
