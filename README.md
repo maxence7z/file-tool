@@ -1,7 +1,8 @@
 # file-tool
 
+git clone https://github.com/maxence7z/file-tool <br>
 pour compiler : make <br>
-pour exécuter : ./main
+pour exécuter : ./main <br>
 
 ## [projet complet]
 -Chiffrement de fichier : xor, aes<br>
